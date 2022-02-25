@@ -23,19 +23,19 @@ describe DockingStation do
   end
 
   it 'responds to bike method' do
-    expect(subject).to respond_to(:bike)
+    expect(subject).to respond_to(:bikes)
   end 
 
-  it 'docks something' do
-    bike = Bike.new
-    expect(subject.dock(bike)).to eq bike
-  end
+  # it 'docks something' do
+  #   bike = Bike.new
+  #   expect(subject.dock(bike)).to eq bike
+  # end
 
-  it 'returns docked bikes' do
-    bike = Bike.new
-    subject.dock(bike)
-    expect(subject.bike).to eq bike
-  end
+  # it 'returns docked bikes' do
+  #   bike = Bike.new
+  #   subject.dock(bike)
+  #   expect(subject.bikes).to eq bike
+  # end
   
   describe '#release_bike' do
     it 'releases a bike' do
@@ -50,10 +50,10 @@ describe DockingStation do
   end
 
   it 'raises error when trying to add more bikes than max capacity' do
-    bike = Bike.new
-    subject.dock(bike)
-    expect {subject.dock(bike)}.to raise_error 'Already full!'
+    20.times { subject.dock(Bike.new) }
+    expect {subject.dock(Bike.new)}.to raise_error 'Already full!'
   end
+  
     
 end    
 
