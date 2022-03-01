@@ -50,10 +50,11 @@ describe DockingStation do
   end
 
   it 'raises error when trying to add more bikes than max capacity' do
-    20.times { subject.dock(Bike.new) }
+    DockingStation::DEFAULT_CAPACITY.times do
+      subject.dock Bike.new
     expect {subject.dock(Bike.new)}.to raise_error 'Already full!'
   end
-  
+end
     
 end    
 
